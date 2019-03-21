@@ -20,16 +20,4 @@ defmodule Rumbl.User do
         |> validate_length(:username, min: 1)
         |> validate_length(:username, max: 20)
       end
-
-      #def registration_changeset(model, params) do
-    #    model
-    #    |> changeset(params)
-    #    |> cast(params, ~w(password), [])
-    #    |> validate_length(:password, min: 6)
-    #    |> validate_length(:password, max: 100)
-    #    |> put_pass_hash()
-
-    #    end
-
-
 end
