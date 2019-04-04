@@ -1,0 +1,3 @@
+<h1>Showing User</h1>
+<%= render "user.html", user: @user %>
+<p> Oi, eu sou <%= @user.name %> e sou usuário(a) desse programa.</p>
