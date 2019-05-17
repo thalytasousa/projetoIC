@@ -1,0 +1,30 @@
+<h1>Listing Rivers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>States</th>
+      <th>Cities</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for river <- @rivers do %>
+    <tr>
+      <td><%= river.states %></td>
+      <td><%= river.cities %></td>
+      <td><%= river.name %></td>
+
+      <td>
+        <%= link "Show", to: Routes.river_path(@conn, :show, river) %>
+        <%= link "Edit", to: Routes.river_path(@conn, :edit, river) %>
+        <%= link "Delete", to: Routes.river_path(@conn, :delete, river), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New River", to: Routes.river_path(@conn, :new) %></span>
