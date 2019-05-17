@@ -60,8 +60,8 @@ defmodule RumblWeb.SensorController do
     |> redirect(to: Routes.sensor_path(conn, :index))
   end
 
-  def action(conn, _) do
-    args = [conn, conn.params, conn.assigns.current_user] #args = [conn, conn.params, conn.assigns.current_river]
-    apply(__MODULE__, action_name(conn), args)
-  end
+#  def action(conn, _) do
+#    args = [conn, conn.params, conn.assigns.current_river]
+#    apply(__MODULE__, action_name(conn), args)
+#  end
 end
