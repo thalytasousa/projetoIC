@@ -1,0 +1,23 @@
+<h1>Show River</h1>
+
+<ul>
+
+  <li>
+    <strong>States:</strong>
+    <%= @river.states %>
+  </li>
+
+  <li>
+    <strong>Cities:</strong>
+    <%= @river.cities %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @river.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.river_path(@conn, :edit, @river) %></span>
+<span><%= link "Back", to: Routes.river_path(@conn, :index) %></span>
