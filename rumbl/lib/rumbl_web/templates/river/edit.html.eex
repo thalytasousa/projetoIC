@@ -1,0 +1,5 @@
+<h1>Edit River</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.river_path(@conn, :update, @river)) %>
+
+<span><%= link "Back", to: Routes.river_path(@conn, :index) %></span>
