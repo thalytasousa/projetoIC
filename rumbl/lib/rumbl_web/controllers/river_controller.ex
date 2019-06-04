@@ -51,8 +51,8 @@ defmodule RumblWeb.RiverController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    river = World.get_river!(id)
+  def delete(conn, %{"id" => id}, current_user) do
+    river = World.get_user_river!(current_user, id)
     {:ok, _river} = World.delete_river(river)
 
     conn
@@ -60,3 +60,12 @@ defmodule RumblWeb.RiverController do
     |> redirect(to: Routes.river_path(conn, :index))
   end
 end
+
+#def delete(conn, %{"id" => id}) do
+#  river = World.get_river!(id)
+#  {:ok, _river} = World.delete_river(river)
+
+#  conn
+#  |> put_flash(:info, "River deleted successfully.")
+#  |> redirect(to: Routes.river_path(conn, :index))
+#end
