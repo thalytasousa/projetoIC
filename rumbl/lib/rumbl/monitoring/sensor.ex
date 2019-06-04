@@ -15,5 +15,6 @@ defmodule Rumbl.Monitoring.Sensor do
     sensor
     |> cast(attrs, [:latitude, :longitude])
     |> validate_required([:latitude, :longitude])
+    |> validate_length(:username, min: 1, max: 20)
   end
 end
