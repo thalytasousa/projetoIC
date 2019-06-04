@@ -5,7 +5,7 @@ defmodule RumblWeb.SensorController do
   alias Rumbl.Monitoring.Sensor
 
   def index(conn, _params, current_user) do
-    sensors = Monitoring.list_river_sensors(current_user)
+    sensors = Monitoring.list_sensors()
     render(conn, "index.html", sensors: sensors)
   end
 
