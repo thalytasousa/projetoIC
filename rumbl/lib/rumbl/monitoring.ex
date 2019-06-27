@@ -52,10 +52,16 @@ defmodule Rumbl.Monitoring do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_sensor(%World.River{} = river, attrs \\ %{}) do
+  #def create_sensor(%World.River{} = river, attrs \\ %{}) do
+  #  %Sensor{}
+  #  |> Sensor.changeset(attrs)
+  #  |> put_river(river)
+  #  |> Repo.insert()
+  #end
+
+  def create_sensor(attrs \\ %{}) do
     %Sensor{}
     |> Sensor.changeset(attrs)
-    |> put_river(river)
     |> Repo.insert()
   end
 
@@ -102,10 +108,14 @@ defmodule Rumbl.Monitoring do
       %Ecto.Changeset{source: %Sensor{}}
 
   """
-  def change_sensor(%World.River{} = river, %Sensor{} = sensor) do
-    sensor
-    |> Sensor.changeset(%{})
-    |> put_river(river)
+#  def change_sensor(%World.River{} = river, %Sensor{} = sensor) do
+#    sensor
+#    |> Sensor.changeset(%{})
+#    |> put_river(river)
+#  end
+
+  def change_sensor(%Sensor{} = sensor) do
+    Sensor.changeset(sensor, %{})
   end
 
   defp put_river(changeset, river) do
