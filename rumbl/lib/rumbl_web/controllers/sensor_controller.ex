@@ -4,18 +4,18 @@ defmodule RumblWeb.SensorController do
   alias Rumbl.Monitoring
   alias Rumbl.Monitoring.Sensor
 
-  def index(conn, _params, current_user) do
+  def index(conn, _params) do
     sensors = Monitoring.list_sensors()
     render(conn, "index.html", sensors: sensors)
   end
 
-  def new(conn, _params, current_user) do
-    changeset = Monitoring.change_sensor(current_user, %Sensor{})
+  def new(conn, _params) do
+    changeset = Monitoring.change_sensor(%Sensor{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"sensor" => sensor_params}, current_user) do
-    case Monitoring.create_sensor(current_user, sensor_params) do
+  def create(conn, %{"sensor" => sensor_params}) do
+    case Monitoring.create_sensor(sensor_params) do
       {:ok, sensor} ->
         conn
         |> put_flash(:info, "Sensor created successfully.")
@@ -26,19 +26,19 @@ defmodule RumblWeb.SensorController do
     end
   end
 
-  def show(conn, %{"id" => id}, current_user) do
-    sensor = Monitoring.get_river_sensor!(current_user, id)
+  def show(conn, %{"id" => id}) do
+    sensor = Monitoring.get_river_sensor!(id)
     render(conn, "show.html", sensor: sensor)
   end
 
-  def edit(conn, %{"id" => id}, current_user) do
-    sensor = Monitoring.get_river_sensor!(current_user, id)
-    changeset = Monitoring.change_sensor(current_user, sensor)
+  def edit(conn, %{"id" => id}) do
+    sensor = Monitoring.get_river_sensor!(id)
+    changeset = Monitoring.change_sensor(sensor)
     render(conn, "edit.html", sensor: sensor, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "sensor" => sensor_params}, current_user) do
-    sensor = Monitoring.get_river_sensor!(current_user, id)
+  def update(conn, %{"id" => id, "sensor" => sensor_params}) do
+    sensor = Monitoring.get_river_sensor!(id)
 
     case Monitoring.update_sensor(sensor, sensor_params) do
       {:ok, sensor} ->
@@ -51,8 +51,8 @@ defmodule RumblWeb.SensorController do
     end
   end
 
-  def delete(conn, %{"id" => id}, current_user) do
-    sensor = Monitoring.get_river_sensor!(current_user, id)
+  def delete(conn, %{"id" => id}) do
+    sensor = Monitoring.get_river_sensor!(id)
     {:ok, _sensor} = Monitoring.delete_sensor(sensor)
 
     conn
@@ -61,7 +61,8 @@ defmodule RumblWeb.SensorController do
   end
 
   def action(conn, _) do
-    args = [conn, conn.params, conn.assigns.current_user]
+    args = [conn, conn.params]
+    #, conn.assigns.current_user
     apply(__MODULE__, action_name(conn), args)
   end
 end
